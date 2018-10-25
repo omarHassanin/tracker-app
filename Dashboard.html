@@ -1,0 +1,87 @@
+<html ng-app="main">
+
+<head>
+
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+
+    <div class="parent" ng-controller="DashboardController as DashC">
+
+
+        <div class="topnav">
+
+            <ul class="horiznal">
+                <li class="horiznal">
+                    <a href ng-click="DashC.goHome();">Home</a>
+                </li>
+                <li class="horiznal active">
+                    <a href="#Dashboard">Dashboard</a>
+                </li>
+                <li class="horiznal" style="float: right;">
+                    <a href="#LOG OUT">LOG OUT</a>
+                </li>
+            </ul>
+
+        </div>
+
+        <div class="row bg">
+
+            <div id="menu" style="position: relative" class="category col-6" ng-init="DashC.init()">
+
+                <h6 style="color: aliceblue ;">--chooseee Country</h6>
+
+                <details ng-repeat="country in DashC.countries track by $index">
+
+                    <summary>{{country.place}}
+
+                        <input type="checkbox" ng-checked="DashC.isSelected(country)" ng-click="DashC.toggleItem(country)" />
+                    </summary>
+
+                    <div ng-repeat="city in country.state track by $index">
+
+                        <label>{{city.place}}
+                            <button style="float: right ; background-color: crimson ; border: none ;" ng-click="DashC.SetCountryANDCityNames($parent.$index , $index)">Remove</button>
+                        </label>
+
+                    </div>
+
+                </details>
+
+            </div>
+
+
+            <div class="col-6">
+
+                <div style="width: 80% ; " ng-if="DashC.SuccessMessage" class="alert alert-success col-6" role="alert">
+                    {{DashC.SuccessMessage}}
+                    <a href style="position: relative ; left:40px; color: darkslategray ; font: bold " ng-click="DashC.closeSuccessAlert()">OKAY</a>
+
+                </div>
+
+                <div style="width: 80% ; " ng-if="DashC.ErrorMessage" class="alert alert-danger col-6" role="alert">
+                    {{DashC.ErrorMessage}}
+                    <a href style="position: relative ; left:40px; color: darkslategray ; font: bold " ng-click="DashC.closeErrorAlert()">OKAY</a>
+
+                </div>
+                <button class="button" ng-click="DashC.DeleteItem()"> &#8722; Delete Item</button>
+
+
+
+
+            </div>
+
+
+
+
+
+
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

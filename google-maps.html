@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html ng-app="main">
+
+<head>
+  <meta charset="ISO-8859-1">
+  <title>Maps in AngularJS</title>
+  <link rel="stylesheet" href="/css/map.css">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.min.js"></script>
+  <script src="http://maps.googleapis.com/maps/api/js?sensor=false&language=en"></script>
+  <script src="script/main.js"></script>
+  <script src="script/map.js"></script>
+  <script src="script/mapService.js"></script>
+
+</head>
+
+
+<body>
+
+
+  <div>
+
+
+
+    <div class="topnav">
+
+      <ul class="horiznal">
+        <li class="horiznal">
+          <a href="#home">Home</a>
+        </li>
+        <li class="horiznal">
+          <a href="#Dashboard">Dashboard</a>
+        </li>
+        <li class="horiznal" style="float: right;">
+          <a href="#LOG OUT">LOG OUT</a>
+        </li>
+      </ul>
+
+
+
+    </div>
+    <div    ng-controller="MapController as mapC" ng-init="mapC.init()"     style="background-image: url('data:image/jpeg;base64,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')"
+      class="row">
+
+      <div style="float: right ;" id="mapContainer" class="col-6" >
+        <div id="map"></div>
+        <div id="repeat" ng-repeat="marker in mapC.markers track by $index">
+          <a id="country_container" href="#" ng-click="openInfoWindow($event, marker)">
+            <label id="names">{{marker.title}}</label>
+          </a>
+        </div>
+      </div>
+      <div class="col-6">
+
+        <div class="row">
+          <div class="column">
+            <a href ng-click="mapC.showMarkers('Hotel');">
+              <img  src="/images/Hotels.jpg" style="width:100% ; height: 100% ;" alt="HOTELS" style="width:100%" ></img>
+            </a>
+           <p style="text-align: center ; color: white ;">HOTELS</p>
+          </div>
+          <div class="column">
+            <a href ng-click="mapC.showMarkers('Hospital');"> 
+                <img  src="/images/Hospitals.jpg" style="width:100% ; height: 100% ;" alt="HOSPITALS" style="width:100%" ></img>
+            </a>
+            <p style="text-align: center ; color: white ;">HOSPITALS</p>
+          </div>
+          <div class="column">
+            <a href ng-click="mapC.showMarkers('SChool');"><img  src="/images/schools.jpg" alt="SCHOOLS" style="width:100%" ></img></a>
+            <p style="text-align: center ; color: white ;">SCHOOLS</p>
+          </div>
+        </div>
+
+      </div>
+
+
+    </div>
+  </div>
+
+  </div>
+</body>
+
+</html>

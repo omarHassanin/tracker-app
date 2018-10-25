@@ -1,0 +1,72 @@
+<html ng-app="main">
+
+
+
+<body>
+    <div class="parent" ng-controller="HomeController as homeC">
+
+
+
+        <div class="topnav">
+
+            <ul class="horiznal">
+                <li class="horiznal">
+                    <a class="active" href="#home">Home</a>
+                </li>
+                <li class="horiznal">
+                    <a href ng-click="homeC.goDashboard();">Dashboard</a>
+                </li>
+                <li class="horiznal" style="float: right;">
+                    <a href ng-click="homeC.logout();">LOG OUT</a>
+                </li>
+            </ul>
+
+        </div>
+
+        <div class="row bg">
+
+            <div id="menu" style="position: relative" class="category col-6" ng-init="homeC.init()">
+
+                <h6 style="color: aliceblue ;">--choose Country</h6>
+
+                <details ng-repeat="country in homeC.countries">
+
+                    <summary>{{country.place}}</summary>
+                    <div ng-repeat="city in country.state">
+
+                        <a href ng-click="homeC.SetCountryANDCityNames(country.place , city.place)">{{city.place}}</a>
+
+                    </div>
+
+                </details>
+
+
+
+                <button class="button" ng-click="homeC.getPlaces()">
+                    <span>Move To {{homeC.city}}</span>
+                </button>
+
+            </div>
+            <div class="col-6">
+
+                <div style="width: 80% ; " ng-if="homeC.ErrorMessage" class="alert alert-danger col-6" role="alert">
+                    {{homeC.ErrorMessage}}
+                    <a href style="position: relative ; left:40px; color: darkslategray ; font: bold " ng-click="homeC.closeAlert()">OKAY</a>
+
+                </div>
+
+            </div>
+
+
+
+
+
+        </div>
+
+    </div>
+</body>
+
+
+
+
+</html>
